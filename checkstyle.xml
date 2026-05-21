@@ -14,3 +14,4 @@
         <module name="NeedBraces"/>
     </module>
 </module>
+<module name="Checker"/>
