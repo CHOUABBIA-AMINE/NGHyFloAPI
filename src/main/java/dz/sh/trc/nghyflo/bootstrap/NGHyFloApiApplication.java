@@ -13,7 +13,10 @@
  * @Layer       : Bootstrap
  * @Package     : dz.sh.trc.nghyflo.bootstrap
  *
- * @Description : Spring Boot entrypoint
+ * @Description : Spring Boot entry point
  *
  */
-package dz.sh.trc.nghyflo.bootstrap; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.boot.SpringApplication; @SpringBootApplication public class NGHyFloApiApplication { public static void main(String[] a){SpringApplication.run(NGHyFloApiApplication.class,a);} }
+package dz.sh.trc.nghyflo.bootstrap;
+import org.springframework.boot.SpringApplication;import org.springframework.boot.autoconfigure.SpringBootApplication;
+@SpringBootApplication
+public class NGHyFloApiApplication {public static void main(String[] args){SpringApplication.run(NGHyFloApiApplication.class,args);} }
