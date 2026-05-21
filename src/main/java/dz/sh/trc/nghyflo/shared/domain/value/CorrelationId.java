@@ -13,9 +13,17 @@
  * @Layer       : Shared Kernel
  * @Package     : dz.sh.trc.nghyflo.shared.domain.value
  *
- * @Description : Identifier value object for CorrelationId.
+ * @Description : Strongly typed UUID-backed identifier for CorrelationId.
  *
  */
 package dz.sh.trc.nghyflo.shared.domain.value;
 
-public record CorrelationId(String value) {}
+import java.util.UUID;
+
+public record CorrelationId(String value) {
+    public CorrelationId {
+        if (value == null || value.isBlank()) throw new IllegalArgumentException("CorrelationId is required");
+        UUID.fromString(value);
+    }
+    public static CorrelationId newId() { return new CorrelationId(UUID.randomUUID().toString()); }
+}
