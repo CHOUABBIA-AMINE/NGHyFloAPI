@@ -1,0 +1,1 @@
+package dz.sh.trc.nghyflo.bootstrap; import org.junit.jupiter.api.Test; class BootstrapStatusControllerTest { @Test void smoke(){} }
