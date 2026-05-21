@@ -1,2 +1,3 @@
-# manifest
-TODO
+# skeleton-manifest.md
+
+## TODO
