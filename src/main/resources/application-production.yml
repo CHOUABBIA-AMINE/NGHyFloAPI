@@ -1,1 +1,30 @@
-# TODO
+spring:
+  datasource:
+    url: ${NGHYFLO_PROD_DB_URL}
+    username: ${NGHYFLO_PROD_DB_USERNAME}
+    password: ${NGHYFLO_PROD_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+  flyway:
+    enabled: true
+
+server:
+  forward-headers-strategy: framework
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+nghyflo:
+  cors:
+    allowed-origins: []
+  security:
+    require-external-secrets: true

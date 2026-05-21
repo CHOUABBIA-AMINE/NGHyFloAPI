@@ -1,1 +1,22 @@
-# TODO
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/nghyflo_dev
+    username: nghyflo_dev
+    password: ${NGHYFLO_DEV_DB_PASSWORD:change-me-dev}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+logging:
+  level:
+    root: INFO
+    dz.sh.trc.nghyflo: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
