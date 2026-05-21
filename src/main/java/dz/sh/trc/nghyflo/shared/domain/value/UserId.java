@@ -13,9 +13,17 @@
  * @Layer       : Shared Kernel
  * @Package     : dz.sh.trc.nghyflo.shared.domain.value
  *
- * @Description : Identifier value object for UserId.
+ * @Description : Strongly typed UUID-backed identifier for UserId.
  *
  */
 package dz.sh.trc.nghyflo.shared.domain.value;
 
-public record UserId(String value) {}
+import java.util.UUID;
+
+public record UserId(String value) {
+    public UserId {
+        if (value == null || value.isBlank()) throw new IllegalArgumentException("UserId is required");
+        UUID.fromString(value);
+    }
+    public static UserId newId() { return new UserId(UUID.randomUUID().toString()); }
+}

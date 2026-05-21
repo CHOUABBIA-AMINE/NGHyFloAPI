@@ -13,9 +13,17 @@
  * @Layer       : Shared Kernel
  * @Package     : dz.sh.trc.nghyflo.shared.domain.value
  *
- * @Description : Identifier value object for CausationId.
+ * @Description : Strongly typed UUID-backed identifier for CausationId.
  *
  */
 package dz.sh.trc.nghyflo.shared.domain.value;
 
-public record CausationId(String value) {}
+import java.util.UUID;
+
+public record CausationId(String value) {
+    public CausationId {
+        if (value == null || value.isBlank()) throw new IllegalArgumentException("CausationId is required");
+        UUID.fromString(value);
+    }
+    public static CausationId newId() { return new CausationId(UUID.randomUUID().toString()); }
+}
