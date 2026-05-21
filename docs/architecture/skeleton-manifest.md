@@ -7,6 +7,7 @@
 NGHyFloAPI
 
 ## Current Delivery Slice
+Phase 0.5 — Production Config Baseline
 Phase 0.1 — Dependency Governance
 
 ## Java Version Selected
@@ -19,6 +20,17 @@ Phase 0.1 — Dependency Governance
 Maven Central metadata + Spring official docs + local Maven build validation.
 
 ## Modules Created
+- Bootstrap baseline
+- Shared kernel baseline
+- Bounded-context directory scaffolding under `src/main/java/dz/sh/trc/nghyflo/modules/*`
+
+## Files Created
+- See git history for prior slices.
+
+## Files Intentionally Deferred
+- Platform core concrete implementations.
+- Business bounded-context domain/application/infrastructure/api classes.
+- Full Flyway migration set and SQL seed/retention scripts.
 Bootstrap skeleton and bounded-context directory scaffolding under `src/main/java/dz/sh/trc/nghyflo/modules/*`.
 
 ## Files Created (Current Slice)
@@ -37,6 +49,14 @@ Pass (`mvn -q -DskipTests compile`)
 Pass (`mvn -q test`)
 
 ## Verify Result
+Pass (`mvn -q verify`)
+
+## Known Risks
+- Spring Boot 4 ecosystem compatibility for optional libraries remains monitored.
+- Shared kernel classes are baseline contracts and placeholders in several API/infrastructure artifacts.
+
+## Next Recommended Phase
+Phase 1 — Shared Kernel + Platform Core
 Pending this slice execution command output update.
 
 ## Known Risks

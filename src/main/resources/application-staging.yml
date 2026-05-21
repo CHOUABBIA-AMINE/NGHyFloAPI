@@ -1,4 +1,24 @@
 spring:
+  datasource:
+    url: ${NGHYFLO_STAGING_DB_URL}
+    username: ${NGHYFLO_STAGING_DB_USERNAME}
+    password: ${NGHYFLO_STAGING_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+nghyflo:
+  security:
+    require-external-secrets: true
   application:
     name: nghyflo-api
 # TODO
