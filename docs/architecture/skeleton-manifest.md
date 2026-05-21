@@ -7,7 +7,7 @@ NGHyFloAPI
 2026-05-22
 
 ## Current Delivery Slice
-R1-001 — Shared-Kernel Typed Identifier Hardening
+R1-002 — Shared-Kernel Industrial Measurement Value Hardening
 
 ## Product Identity
 - Product: NGHyFlo — New Generation Hydrocarbon Flow Intelligence Platform
@@ -122,10 +122,36 @@ Scope completed:
 - Preserved canonical record constructors for existing call sites.
 - Added focused shared-kernel identifier tests.
 
+#### R1-002 — Industrial Measurement Value Hardening
+Added:
+- `src/main/java/dz/sh/trc/nghyflo/shared/domain/value/MeasurementValues.java`
+- `src/test/java/dz/sh/trc/nghyflo/shared/IndustrialMeasurementValueTest.java`
+
+Updated measurement value objects:
+- `Pressure`
+- `Temperature`
+- `FlowRate`
+- `Volume`
+- `Density`
+- `UnitOfMeasure`
+- `QualityCode`
+- `TimestampRange`
+
+Scope completed:
+- Replaced primitive numeric measurement fields with `BigDecimal` for the core pressure, temperature, flow-rate, volume, and density measurements.
+- Added `UnitOfMeasure` validation and normalization.
+- Added non-negative validation for pressure, flow-rate, volume, and density.
+- Kept temperature able to represent below-zero values.
+- Added timestamp range ordering validation.
+- Added focused industrial measurement value tests.
+
+Limitations:
+- `KilometerPost` and `GeoCoordinate` still require follow-up hardening because connector safety checks blocked those patches.
+
 ## Current Technical Debt
 - Some generated Java files still lack mandatory NGHyFlo headers.
 - Some source files still use compressed formatting.
-- Industrial measurement value objects still use primitives and must be replaced with validated `BigDecimal` models.
+- `KilometerPost` and `GeoCoordinate` still use primitive numeric values and must be hardened in a follow-up cleanup.
 - Platform outbox and audit classes exist but require lifecycle/status hardening.
 - Identity password hashing is currently weak and must be replaced with `PasswordEncoder`.
 - Identity API still exposes application command types directly in request bodies.
@@ -140,16 +166,15 @@ Scope completed:
 - CI: Added and expected to execute on push or pull request.
 
 ## Next Recommended Commit
-R1-002 — Replace primitive industrial measurement values with validated `BigDecimal` models.
+R1-003 — Complete domain event and metadata contracts.
 
 ## Corrected Immediate Sequence
-1. R1-002 — Replace primitive industrial measurement values.
-2. R1-003 — Complete domain event and metadata contracts.
-3. R1-004 — Add shared-kernel value object and event metadata tests.
-4. R2-001 — Harden outbox event model and status lifecycle.
-5. R2-002 — Harden audit chain and audit metadata model.
-6. R2-003 — Harden actor resolver and no-spoofing boundary.
-7. R2-004 — Complete RBAC, ABAC, and segregation-of-duty evaluators.
-8. R2-005 — Complete global exception and correlation handling.
-9. R2-006 — Expand audit and outbox migration for industrial metadata.
-10. R3-001 — Replace weak password hashing with `PasswordEncoder` boundary.
+1. R1-003 — Complete domain event and metadata contracts.
+2. R1-004 — Add shared-kernel value object and event metadata tests.
+3. R2-001 — Harden outbox event model and status lifecycle.
+4. R2-002 — Harden audit chain and audit metadata model.
+5. R2-003 — Harden actor resolver and no-spoofing boundary.
+6. R2-004 — Complete RBAC, ABAC, and segregation-of-duty evaluators.
+7. R2-005 — Complete global exception and correlation handling.
+8. R2-006 — Expand audit and outbox migration for industrial metadata.
+9. R3-001 — Replace weak password hashing with `PasswordEncoder` boundary.
