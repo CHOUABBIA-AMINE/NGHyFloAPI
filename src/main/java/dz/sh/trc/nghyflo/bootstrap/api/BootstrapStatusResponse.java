@@ -13,7 +13,10 @@
  * @Layer       : API
  * @Package     : dz.sh.trc.nghyflo.bootstrap.api
  *
- * @Description : Bootstrap status payload
+ * @Description : Bootstrap status response payload
  *
  */
-package dz.sh.trc.nghyflo.bootstrap.api; import java.time.Instant; import java.util.List; public record BootstrapStatusResponse(String systemCode,String systemName,String fullName,String apiBasePath,String status,Instant timestamp,List<String> activeProfiles){}
+package dz.sh.trc.nghyflo.bootstrap.api;
+
+import java.time.Instant;import java.util.List;
+public record BootstrapStatusResponse(String systemCode,String systemName,String fullName,String apiBasePath,String status,Instant timestamp,List<String> activeProfiles) {}
