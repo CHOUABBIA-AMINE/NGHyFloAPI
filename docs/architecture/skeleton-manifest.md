@@ -45,3 +45,6 @@ Pending this slice execution command output update.
 
 ## Next Recommended Phase
 Phase 0.2 — Project Quality Gates
+# skeleton-manifest.md
+
+## TODO
