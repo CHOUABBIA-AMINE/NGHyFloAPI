@@ -1,3 +1,21 @@
+/**
+ *
+ * @Project     : NGHyFloAPI
+ * @Product     : NGHyFlo — New Generation Hydrocarbon Flow Intelligence Platform
+ * @Author      : NGHyFlo Engineering Team
+ * @Owner       : Sonatrach / TRC Digitalization Initiative
+ *
+ * @Name        : User
+ * @CreatedOn   : 2026-05-21
+ * @UpdatedOn   : 2026-05-21
+ *
+ * @Type        : Class
+ * @Layer       : Domain
+ * @Package     : dz.sh.trc.nghyflo.modules.identityaccess.domain.model
+ *
+ * @Description : Represents an authenticated NGHyFlo operator or service account principal.
+ *
+ */
 package dz.sh.trc.nghyflo.modules.identityaccess.domain.model;
 
 import dz.sh.trc.nghyflo.modules.identityaccess.domain.value.PasswordHash;
@@ -21,10 +39,27 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public void assignRole(String roleCode) { roles.add(roleCode); }
-    public UserId id() { return id; }
-    public Username username() { return username; }
-    public PasswordHash passwordHash() { return passwordHash; }
-    public Set<String> roles() { return Set.copyOf(roles); }
-    public Instant createdAt() { return createdAt; }
+    public void assignRole(String roleCode) {
+        roles.add(roleCode);
+    }
+
+    public UserId id() {
+        return id;
+    }
+
+    public Username username() {
+        return username;
+    }
+
+    public PasswordHash passwordHash() {
+        return passwordHash;
+    }
+
+    public Set<String> roles() {
+        return Set.copyOf(roles);
+    }
+
+    public Instant createdAt() {
+        return createdAt;
+    }
 }
