@@ -13,9 +13,14 @@
  * @Layer       : API
  * @Package     : dz.sh.trc.nghyflo.shared.api
  *
- * @Description : Shared API artifact ApiHeaders.
+ * @Description : Standard API headers used for correlation and tenant context propagation.
  *
  */
 package dz.sh.trc.nghyflo.shared.api;
 
-public class ApiHeaders {}
+public final class ApiHeaders {
+    public static final String CORRELATION_ID = "X-Correlation-Id";
+    public static final String TENANT_ID = "X-Tenant-Id";
+    private ApiHeaders() {
+    }
+}
