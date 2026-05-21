@@ -45,3 +45,6 @@ Rationale: managed through Spring Boot parent BOM unless explicit version pin is
 ## TODO
 - Add automated dependency update policy (renovate/dependabot) in Phase 0.2.
 - Add CVE/license scan baseline in quality gates slice.
+# dependency-version-report.md
+
+## TODO
