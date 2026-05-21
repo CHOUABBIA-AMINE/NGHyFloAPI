@@ -28,3 +28,6 @@ nghyflo:
     allowed-origins: []
   security:
     require-external-secrets: true
+  application:
+    name: nghyflo-api
+# TODO

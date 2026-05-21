@@ -19,3 +19,6 @@ management:
 nghyflo:
   security:
     require-external-secrets: true
+  application:
+    name: nghyflo-api
+# TODO
