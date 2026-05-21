@@ -13,9 +13,17 @@
  * @Layer       : Shared Kernel
  * @Package     : dz.sh.trc.nghyflo.shared.domain.value
  *
- * @Description : Identifier value object for EventId.
+ * @Description : Strongly typed UUID-backed identifier for EventId.
  *
  */
 package dz.sh.trc.nghyflo.shared.domain.value;
 
-public record EventId(String value) {}
+import java.util.UUID;
+
+public record EventId(String value) {
+    public EventId {
+        if (value == null || value.isBlank()) throw new IllegalArgumentException("EventId is required");
+        UUID.fromString(value);
+    }
+    public static EventId newId() { return new EventId(UUID.randomUUID().toString()); }
+}
