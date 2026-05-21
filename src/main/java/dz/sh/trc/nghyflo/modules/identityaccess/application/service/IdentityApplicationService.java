@@ -1,3 +1,21 @@
+/**
+ *
+ * @Project     : NGHyFloAPI
+ * @Product     : NGHyFlo — New Generation Hydrocarbon Flow Intelligence Platform
+ * @Author      : NGHyFlo Engineering Team
+ * @Owner       : Sonatrach / TRC Digitalization Initiative
+ *
+ * @Name        : IdentityApplicationService
+ * @CreatedOn   : 2026-05-21
+ * @UpdatedOn   : 2026-05-21
+ *
+ * @Type        : Service
+ * @Layer       : Application
+ * @Package     : dz.sh.trc.nghyflo.modules.identityaccess.application.service
+ *
+ * @Description : Coordinates identity-access use cases for users, roles, and permissions.
+ *
+ */
 package dz.sh.trc.nghyflo.modules.identityaccess.application.service;
 
 import dz.sh.trc.nghyflo.modules.identityaccess.application.command.AssignRoleCommand;
@@ -14,10 +32,17 @@ import java.util.List;
 public class IdentityApplicationService {
     private final UserRepository userRepository;
 
-    public IdentityApplicationService(UserRepository userRepository) { this.userRepository = userRepository; }
+    public IdentityApplicationService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public UserResponse createUser(CreateUserCommand command) {
-        User user = new User(UserId.newId(), new Username(command.username()), new PasswordHash(hash(command.rawPassword())), Instant.now());
+        User user = new User(
+                UserId.newId(),
+                new Username(command.username()),
+                new PasswordHash(hash(command.rawPassword())),
+                Instant.now()
+        );
         User saved = userRepository.save(user);
         return new UserResponse(saved.id().value(), saved.username().value(), saved.roles());
     }
@@ -30,8 +55,13 @@ public class IdentityApplicationService {
     }
 
     public List<UserResponse> users() {
-        return userRepository.findAll().stream().map(u -> new UserResponse(u.id().value(), u.username().value(), u.roles())).toList();
+        return userRepository.findAll()
+                .stream()
+                .map(user -> new UserResponse(user.id().value(), user.username().value(), user.roles()))
+                .toList();
     }
 
-    private String hash(String rawPassword) { return "{bcrypt}" + Integer.toHexString(rawPassword.hashCode()); }
+    private String hash(String rawPassword) {
+        return "{bcrypt}" + Integer.toHexString(rawPassword.hashCode());
+    }
 }
