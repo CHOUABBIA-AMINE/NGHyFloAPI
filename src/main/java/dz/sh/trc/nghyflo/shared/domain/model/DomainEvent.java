@@ -13,10 +13,22 @@
  * @Layer       : Shared Kernel
  * @Package     : dz.sh.trc.nghyflo.shared.domain.model
  *
- * @Description : Base interface for domain events.
+ * @Description : Base immutable domain event contract for operationally traceable event sourcing.
  *
  */
 package dz.sh.trc.nghyflo.shared.domain.model;
 
+import dz.sh.trc.nghyflo.shared.domain.event.EventType;
+import dz.sh.trc.nghyflo.shared.domain.value.CausationId;
+import dz.sh.trc.nghyflo.shared.domain.value.CorrelationId;
+import dz.sh.trc.nghyflo.shared.domain.value.EventId;
 import java.time.Instant;
-public interface DomainEvent {String eventType(); Instant occurredAt();}
+
+public interface DomainEvent {
+    EventId eventId();
+    Instant occurredAt();
+    String aggregateId();
+    EventType eventType();
+    CorrelationId correlationId();
+    CausationId causationId();
+}
