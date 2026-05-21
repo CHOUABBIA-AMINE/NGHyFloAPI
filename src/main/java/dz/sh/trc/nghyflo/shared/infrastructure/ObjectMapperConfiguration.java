@@ -1,21 +1,21 @@
-/**
- *
- * @Project     : NGHyFloAPI
- * @Product     : NGHyFlo — New Generation Hydrocarbon Flow Intelligence Platform
- * @Author      : NGHyFlo Engineering Team
- * @Owner       : Sonatrach / TRC Digitalization Initiative
- *
- * @Name        : ObjectMapperConfiguration
- * @CreatedOn   : 2026-05-21
- * @UpdatedOn   : 2026-05-21
- *
- * @Type        : Configuration
- * @Layer       : Infrastructure
- * @Package     : dz.sh.trc.nghyflo.shared.infrastructure
- *
- * @Description : Shared infrastructure artifact ObjectMapperConfiguration.
- *
- */
 package dz.sh.trc.nghyflo.shared.infrastructure;
 
-public class ObjectMapperConfiguration {}
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class ObjectMapperConfiguration {
+
+    @Bean
+    ObjectMapper sharedObjectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return objectMapper;
+    }
+}
