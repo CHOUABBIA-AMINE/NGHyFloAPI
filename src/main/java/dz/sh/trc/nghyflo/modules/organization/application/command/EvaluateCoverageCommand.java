@@ -13,13 +13,13 @@
  * @Layer       : Application
  * @Package     : dz.sh.trc.nghyflo.modules.organization.application.command
  *
- * @Description : Command requesting coverage evaluation for an employee.
+ * @Description : Command requesting coverage evaluation for an organization employee.
  *
  */
 package dz.sh.trc.nghyflo.modules.organization.application.command;
 
 import dz.sh.trc.nghyflo.modules.organization.domain.model.StaffingCoverage;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 
 public record EvaluateCoverageCommand(
         EmployeeId employeeId,
