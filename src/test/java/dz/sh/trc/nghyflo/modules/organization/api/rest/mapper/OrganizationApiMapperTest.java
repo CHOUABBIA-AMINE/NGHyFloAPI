@@ -22,7 +22,7 @@ import dz.sh.trc.nghyflo.modules.organization.api.rest.request.EvaluateCoverageR
 import dz.sh.trc.nghyflo.modules.organization.api.rest.request.EvaluateOperationalScopeRequest;
 import dz.sh.trc.nghyflo.modules.organization.application.command.EvaluateCoverageCommand;
 import dz.sh.trc.nghyflo.modules.organization.application.command.EvaluateOperationalScopeCommand;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import dz.sh.trc.nghyflo.shared.domain.value.PipelineId;
 import dz.sh.trc.nghyflo.shared.domain.value.RegionId;
 import dz.sh.trc.nghyflo.shared.domain.value.StationId;
