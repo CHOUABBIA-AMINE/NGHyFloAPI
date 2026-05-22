@@ -19,15 +19,22 @@
 package dz.sh.trc.nghyflo.modules.organization.domain.model;
 
 import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeNumber;
 import dz.sh.trc.nghyflo.modules.organization.domain.value.StructureId;
+import java.util.Optional;
 
 public class Employee {
     private final EmployeeId id;
     private final String fullName;
+    private EmployeeNumber employeeNumber;
     private StructureId structureId;
     private EmployeeStatus status;
 
     public Employee(EmployeeId id, String fullName) {
+        this(id, fullName, null);
+    }
+
+    public Employee(EmployeeId id, String fullName, EmployeeNumber employeeNumber) {
         if (id == null) {
             throw new IllegalArgumentException("Employee id is required");
         }
@@ -36,7 +43,15 @@ public class Employee {
         }
         this.id = id;
         this.fullName = fullName.trim();
+        this.employeeNumber = employeeNumber;
         this.status = EmployeeStatus.ACTIVE;
+    }
+
+    public void assignEmployeeNumber(EmployeeNumber employeeNumber) {
+        if (employeeNumber == null) {
+            throw new IllegalArgumentException("employeeNumber is required");
+        }
+        this.employeeNumber = employeeNumber;
     }
 
     public void assignStructure(StructureId structureId) {
@@ -68,6 +83,10 @@ public class Employee {
 
     public String fullName() {
         return fullName;
+    }
+
+    public Optional<EmployeeNumber> employeeNumber() {
+        return Optional.ofNullable(employeeNumber);
     }
 
     public StructureId structureId() {
