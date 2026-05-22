@@ -1,3 +1,21 @@
+/**
+ *
+ * @Project     : NGHyFloAPI
+ * @Product     : NGHyFlo - New Generation Hydrocarbon Flow Intelligence Platform
+ * @Author      : NGHyFlo Engineering Team
+ * @Owner       : Sonatrach / TRC Digitalization Initiative
+ *
+ * @Name        : Role
+ * @CreatedOn   : 2026-05-22
+ * @UpdatedOn   : 2026-05-22
+ *
+ * @Type        : Class
+ * @Layer       : Domain
+ * @Package     : dz.sh.trc.nghyflo.modules.identityaccess.domain.model
+ *
+ * @Description : Identity role aggregate that owns a set of permission codes.
+ *
+ */
 package dz.sh.trc.nghyflo.modules.identityaccess.domain.model;
 
 import dz.sh.trc.nghyflo.modules.identityaccess.domain.value.PermissionCode;
