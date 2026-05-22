@@ -18,9 +18,6 @@
  */
 package dz.sh.trc.nghyflo.platform.security.authentication;
 
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
-import dz.sh.trc.nghyflo.shared.domain.value.TenantId;
-import dz.sh.trc.nghyflo.shared.domain.value.UserId;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -36,7 +33,10 @@ public class AuthenticatedActorResolver {
      */
     public Optional<AuthenticatedActor> resolveCurrentActor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated() || authentication.getName() == null) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return Optional.empty();
+        }
+        if (!(authentication.getPrincipal() instanceof NGHyFloSecurityPrincipal principal)) {
             return Optional.empty();
         }
 
@@ -53,12 +53,11 @@ public class AuthenticatedActorResolver {
                 .filter(authority -> !authority.startsWith("ROLE_"))
                 .collect(Collectors.toUnmodifiableSet());
 
-        ActorSecurityPrincipal principal = ActorSecurityPrincipal.from(authentication.getPrincipal(), authentication.getName());
         return Optional.of(new AuthenticatedActor(
                 principal.userId(),
                 principal.employeeId(),
                 principal.tenantId(),
-                authentication.getName(),
+                principal.username(),
                 roles,
                 permissions,
                 principal.serviceAccount()
@@ -71,25 +70,5 @@ public class AuthenticatedActorResolver {
 
     public String currentActorId() {
         return resolveCurrentActor().map(actor -> actor.userId().value()).orElse("anonymous");
-    }
-
-    private record ActorSecurityPrincipal(
-            UserId userId,
-            EmployeeId employeeId,
-            TenantId tenantId,
-            boolean serviceAccount
-    ) {
-
-        static ActorSecurityPrincipal from(Object principal, String authenticationName) {
-            if (principal instanceof ActorSecurityPrincipal actorPrincipal) {
-                return actorPrincipal;
-            }
-            return new ActorSecurityPrincipal(
-                    UserId.of(authenticationName),
-                    null,
-                    TenantId.newId(),
-                    false
-            );
-        }
     }
 }
