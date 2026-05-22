@@ -19,7 +19,7 @@
 package dz.sh.trc.nghyflo.modules.organization.application.port;
 
 import dz.sh.trc.nghyflo.modules.organization.domain.model.Employee;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import java.util.Optional;
 
 public interface EmployeeLookupPort {
