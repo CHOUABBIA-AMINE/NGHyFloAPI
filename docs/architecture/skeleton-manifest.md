@@ -7,7 +7,7 @@ NGHyFloAPI
 2026-05-22
 
 ## Current Delivery Slice
-R1-002 — Shared-Kernel Industrial Measurement Value Hardening
+R1-003 — Shared-Kernel Domain Event and Metadata Contract Completion
 
 ## Product Identity
 - Product: NGHyFlo — New Generation Hydrocarbon Flow Intelligence Platform
@@ -148,6 +148,29 @@ Scope completed:
 Limitations:
 - `KilometerPost` and `GeoCoordinate` still require follow-up hardening because connector safety checks blocked those patches.
 
+#### R1-003 — Domain Event and Metadata Contract Completion
+Added:
+- `src/test/java/dz/sh/trc/nghyflo/shared/DomainEventContractTest.java`
+
+Updated event contracts:
+- `DomainEvent`
+- `EventMetadata`
+- `EventEnvelope`
+- `EventType`
+- `EventClassification`
+- `OperationalDomainEvent`
+- `WorkflowDomainEvent`
+- `TelemetryDomainEvent`
+- `SecurityDomainEvent`
+- `IntegrationDomainEvent`
+
+Scope completed:
+- Added aggregate type, aggregate ID, event name, and schema version to the domain event contract.
+- Added recorded timestamp to event metadata.
+- Hardened event envelope validation.
+- Added default event family classification through domain event marker interfaces.
+- Added event contract tests covering envelope wrapping, metadata validation, and missing payload rejection.
+
 ## Current Technical Debt
 - Some generated Java files still lack mandatory NGHyFlo headers.
 - Some source files still use compressed formatting.
@@ -166,15 +189,14 @@ Limitations:
 - CI: Added and expected to execute on push or pull request.
 
 ## Next Recommended Commit
-R1-003 — Complete domain event and metadata contracts.
+R1-004 — Add shared-kernel value object and event metadata tests.
 
 ## Corrected Immediate Sequence
-1. R1-003 — Complete domain event and metadata contracts.
-2. R1-004 — Add shared-kernel value object and event metadata tests.
-3. R2-001 — Harden outbox event model and status lifecycle.
-4. R2-002 — Harden audit chain and audit metadata model.
-5. R2-003 — Harden actor resolver and no-spoofing boundary.
-6. R2-004 — Complete RBAC, ABAC, and segregation-of-duty evaluators.
-7. R2-005 — Complete global exception and correlation handling.
-8. R2-006 — Expand audit and outbox migration for industrial metadata.
-9. R3-001 — Replace weak password hashing with `PasswordEncoder` boundary.
+1. R1-004 — Add shared-kernel value object and event metadata tests.
+2. R2-001 — Harden outbox event model and status lifecycle.
+3. R2-002 — Harden audit chain and audit metadata model.
+4. R2-003 — Harden actor resolver and no-spoofing boundary.
+5. R2-004 — Complete RBAC, ABAC, and segregation-of-duty evaluators.
+6. R2-005 — Complete global exception and correlation handling.
+7. R2-006 — Expand audit and outbox migration for industrial metadata.
+8. R3-001 — Replace weak password hashing with `PasswordEncoder` boundary.
