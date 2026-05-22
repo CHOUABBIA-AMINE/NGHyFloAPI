@@ -1,3 +1,21 @@
+/**
+ *
+ * @Project     : NGHyFloAPI
+ * @Product     : NGHyFlo - New Generation Hydrocarbon Flow Intelligence Platform
+ * @Author      : NGHyFlo Engineering Team
+ * @Owner       : Sonatrach / TRC Digitalization Initiative
+ *
+ * @Name        : OrganizationConfiguration
+ * @CreatedOn   : 2026-05-22
+ * @UpdatedOn   : 2026-05-22
+ *
+ * @Type        : Configuration
+ * @Layer       : Infrastructure
+ * @Package     : dz.sh.trc.nghyflo.modules.organization.infrastructure.configuration
+ *
+ * @Description : Wires organization application services and persistence adapters.
+ *
+ */
 package dz.sh.trc.nghyflo.modules.organization.infrastructure.configuration;
 
 import dz.sh.trc.nghyflo.modules.organization.application.port.CoverageAllocationPort;
@@ -20,7 +38,10 @@ public class OrganizationConfiguration {
     }
 
     @Bean
-    public EmployeeLookupPort employeeLookupPort(SpringDataEmployeeJpaRepository repository, OrganizationJpaMapper mapper) {
+    public EmployeeLookupPort employeeLookupPort(
+            SpringDataEmployeeJpaRepository repository,
+            OrganizationJpaMapper mapper
+    ) {
         return new JpaEmployeeLookupAdapter(repository, mapper);
     }
 
