@@ -27,7 +27,7 @@ import java.io.IOException;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 public class RequestCorrelationFilter extends OncePerRequestFilter {
-    private static final String HEADER_NAME = "X-Correlation-Id";
+    static final String CORRELATION_HEADER = "X-Correlation-Id";
 
     @Override
     protected void doFilterInternal(
@@ -35,16 +35,21 @@ public class RequestCorrelationFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
-        String incoming = request.getHeader(HEADER_NAME);
-        CorrelationId correlationId = incoming == null || incoming.isBlank()
-                ? CorrelationId.newId()
-                : CorrelationId.of(incoming);
+        CorrelationId correlationId = resolveCorrelationId(request);
         CorrelationContext.set(correlationId);
-        response.setHeader(HEADER_NAME, correlationId.value());
+        response.setHeader(CORRELATION_HEADER, correlationId.value());
         try {
             filterChain.doFilter(request, response);
         } finally {
             CorrelationContext.clear();
         }
+    }
+
+    private CorrelationId resolveCorrelationId(HttpServletRequest request) {
+        String incoming = request.getHeader(CORRELATION_HEADER);
+        if (incoming == null || incoming.isBlank()) {
+            return CorrelationId.newId();
+        }
+        return CorrelationId.of(incoming);
     }
 }
