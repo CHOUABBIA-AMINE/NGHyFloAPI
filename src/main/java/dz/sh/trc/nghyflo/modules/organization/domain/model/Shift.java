@@ -18,27 +18,32 @@
  */
 package dz.sh.trc.nghyflo.modules.organization.domain.model;
 
+import dz.sh.trc.nghyflo.modules.organization.domain.value.ShiftCode;
 import dz.sh.trc.nghyflo.modules.organization.domain.value.ShiftId;
 import java.time.Instant;
 
 public class Shift {
     private final ShiftId id;
-    private final String code;
+    private final ShiftCode code;
     private final Instant startsAt;
     private final Instant endsAt;
 
     public Shift(ShiftId id, String code, Instant startsAt, Instant endsAt) {
+        this(id, ShiftCode.of(code), startsAt, endsAt);
+    }
+
+    public Shift(ShiftId id, ShiftCode code, Instant startsAt, Instant endsAt) {
         if (id == null) {
             throw new IllegalArgumentException("shift id is required");
         }
-        if (code == null || code.isBlank()) {
+        if (code == null) {
             throw new IllegalArgumentException("shift code is required");
         }
         if (startsAt == null || endsAt == null || !endsAt.isAfter(startsAt)) {
             throw new IllegalArgumentException("shift time window is invalid");
         }
         this.id = id;
-        this.code = code.trim().toUpperCase();
+        this.code = code;
         this.startsAt = startsAt;
         this.endsAt = endsAt;
     }
@@ -52,6 +57,10 @@ public class Shift {
     }
 
     public String code() {
+        return code.value();
+    }
+
+    public ShiftCode shiftCode() {
         return code;
     }
 
