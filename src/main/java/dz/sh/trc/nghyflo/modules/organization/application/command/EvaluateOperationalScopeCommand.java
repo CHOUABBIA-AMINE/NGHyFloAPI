@@ -18,8 +18,8 @@
  */
 package dz.sh.trc.nghyflo.modules.organization.application.command;
 
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import dz.sh.trc.nghyflo.platform.security.authorization.OperationalScope;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
 
 public record EvaluateOperationalScopeCommand(
         EmployeeId employeeId,
