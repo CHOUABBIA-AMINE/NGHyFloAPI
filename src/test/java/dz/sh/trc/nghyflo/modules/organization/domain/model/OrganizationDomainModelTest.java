@@ -18,11 +18,11 @@
  */
 package dz.sh.trc.nghyflo.modules.organization.domain.model;
 
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import dz.sh.trc.nghyflo.modules.organization.domain.value.ShiftId;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.StructureId;
 import dz.sh.trc.nghyflo.shared.domain.value.PipelineId;
 import dz.sh.trc.nghyflo.shared.domain.value.RegionId;
-import dz.sh.trc.nghyflo.shared.domain.value.StructureId;
 import java.time.Instant;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
@@ -62,7 +62,8 @@ class OrganizationDomainModelTest {
     @Test
     void shouldCompareCoverageInclusion() {
         RegionId regionId = RegionId.newId();
-        StructureId structureId = StructureId.newId();
+        dz.sh.trc.nghyflo.shared.domain.value.StructureId structureId =
+                dz.sh.trc.nghyflo.shared.domain.value.StructureId.newId();
         PipelineId pipelineId = PipelineId.newId();
         StaffingCoverage granted = new StaffingCoverage(Set.of(regionId), Set.of(structureId), Set.of(pipelineId), Set.of());
         StaffingCoverage required = new StaffingCoverage(Set.of(regionId), Set.of(), Set.of(pipelineId), Set.of());
