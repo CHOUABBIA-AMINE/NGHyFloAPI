@@ -74,17 +74,62 @@ class DomainEventContractTest {
     }
 
     @Test
-    void shouldRejectEnvelopeWithoutPayload() {
+    void shouldRejectEnvelopeWithoutRequiredFields() {
+        WorkflowStartedForTest event = WorkflowStartedForTest.create();
+        EventMetadata metadata = EventMetadata.of(
+                UserId.newId(),
+                TenantId.newId(),
+                event.correlationId(),
+                event.causationId(),
+                "workflow"
+        );
+
         assertThrows(IllegalArgumentException.class, () -> new EventEnvelope<>(
-                EventId.newId(),
-                "nghyflo.workflow.started.v1",
-                "WorkflowInstance",
-                CausationId.newId().value(),
+                null,
+                event.eventName(),
+                event.aggregateType(),
+                event.aggregateId(),
                 EventType.WORKFLOW,
                 EventClassification.OPERATIONAL,
                 1,
                 Instant.now(),
-                EventMetadata.of(UserId.newId(), TenantId.newId(), CorrelationId.newId(), CausationId.newId(), "workflow"),
+                metadata,
+                event
+        ));
+        assertThrows(IllegalArgumentException.class, () -> new EventEnvelope<>(
+                event.eventId(),
+                " ",
+                event.aggregateType(),
+                event.aggregateId(),
+                EventType.WORKFLOW,
+                EventClassification.OPERATIONAL,
+                1,
+                Instant.now(),
+                metadata,
+                event
+        ));
+        assertThrows(IllegalArgumentException.class, () -> new EventEnvelope<>(
+                event.eventId(),
+                event.eventName(),
+                event.aggregateType(),
+                event.aggregateId(),
+                EventType.WORKFLOW,
+                EventClassification.OPERATIONAL,
+                0,
+                Instant.now(),
+                metadata,
+                event
+        ));
+        assertThrows(IllegalArgumentException.class, () -> new EventEnvelope<>(
+                event.eventId(),
+                event.eventName(),
+                event.aggregateType(),
+                event.aggregateId(),
+                EventType.WORKFLOW,
+                EventClassification.OPERATIONAL,
+                1,
+                Instant.now(),
+                metadata,
                 null
         ));
     }
