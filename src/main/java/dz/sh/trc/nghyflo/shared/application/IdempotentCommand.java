@@ -13,8 +13,8 @@
  * @Layer       : Shared Kernel
  * @Package     : dz.sh.trc.nghyflo.shared.application
  *
- * @Description : Command with idempotency key.
+ * @Description : Command with idempotency code.
  *
  */
 package dz.sh.trc.nghyflo.shared.application;
-public interface IdempotentCommand extends Command {String idempotencyKey();}
+public interface IdempotentCommand extends Command {String idempotencyCode();}

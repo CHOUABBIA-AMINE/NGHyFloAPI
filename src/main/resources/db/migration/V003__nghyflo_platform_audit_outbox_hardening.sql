@@ -58,7 +58,7 @@ alter table nghyflo.ng_outbox_dead_letter
     add column if not exists retry_count int not null default 0;
 
 create table if not exists nghyflo.ng_audit_chain_checkpoint(
-    id varchar(64) primary key,
+    id varchar(64) primary code,
     target_type varchar(128) not null,
     target_id varchar(128) not null,
     latest_audit_id varchar(64) not null,
