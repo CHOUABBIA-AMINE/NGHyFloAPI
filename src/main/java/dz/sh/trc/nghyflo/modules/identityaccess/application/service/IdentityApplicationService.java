@@ -1,3 +1,21 @@
+/**
+ *
+ * @Project     : NGHyFloAPI
+ * @Product     : NGHyFlo - New Generation Hydrocarbon Flow Intelligence Platform
+ * @Author      : NGHyFlo Engineering Team
+ * @Owner       : Sonatrach / TRC Digitalization Initiative
+ *
+ * @Name        : IdentityApplicationService
+ * @CreatedOn   : 2026-05-21
+ * @UpdatedOn   : 2026-05-22
+ *
+ * @Type        : Service
+ * @Layer       : Application
+ * @Package     : dz.sh.trc.nghyflo.modules.identityaccess.application.service
+ *
+ * @Description : Coordinates identity-access user and role application use cases.
+ *
+ */
 package dz.sh.trc.nghyflo.modules.identityaccess.application.service;
 
 import dz.sh.trc.nghyflo.modules.identityaccess.application.command.AssignRoleCommand;
@@ -16,6 +34,12 @@ public class IdentityApplicationService {
     private final PasswordEncoderPort credentialEncoder;
 
     public IdentityApplicationService(UserRepository userRepository, PasswordEncoderPort credentialEncoder) {
+        if (userRepository == null) {
+            throw new IllegalArgumentException("userRepository is required");
+        }
+        if (credentialEncoder == null) {
+            throw new IllegalArgumentException("credentialEncoder is required");
+        }
         this.userRepository = userRepository;
         this.credentialEncoder = credentialEncoder;
     }
@@ -32,10 +56,10 @@ public class IdentityApplicationService {
     }
 
     public UserResponse assignRole(AssignRoleCommand command) {
-        User user = userRepository.findById(new UserId(command.userId())).orElseThrow();
+        User user = userRepository.findById(UserId.of(command.userId())).orElseThrow();
         user.assignRole(command.roleCode());
-        userRepository.save(user);
-        return new UserResponse(user.id().value(), user.username().value(), user.roles());
+        User saved = userRepository.save(user);
+        return new UserResponse(saved.id().value(), saved.username().value(), saved.roles());
     }
 
     public List<UserResponse> users() {
