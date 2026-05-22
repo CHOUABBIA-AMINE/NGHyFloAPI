@@ -2,7 +2,7 @@ package dz.sh.trc.nghyflo.modules.organization.infrastructure.persistence.jpa;
 
 import dz.sh.trc.nghyflo.modules.organization.application.port.EmployeeLookupPort;
 import dz.sh.trc.nghyflo.modules.organization.domain.model.Employee;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import java.util.Optional;
 import org.springframework.transaction.annotation.Transactional;
 
