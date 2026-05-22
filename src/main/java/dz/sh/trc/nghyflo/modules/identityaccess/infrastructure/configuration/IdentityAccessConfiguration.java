@@ -13,7 +13,7 @@
  * @Layer       : Infrastructure
  * @Package     : dz.sh.trc.nghyflo.modules.identityaccess.infrastructure.configuration
  *
- * @Description : Wires identity-access application services and infrastructure adapters for the current skeleton.
+ * @Description : Wires identity-access application services and security adapters.
  *
  */
 package dz.sh.trc.nghyflo.modules.identityaccess.infrastructure.configuration;
@@ -21,18 +21,12 @@ package dz.sh.trc.nghyflo.modules.identityaccess.infrastructure.configuration;
 import dz.sh.trc.nghyflo.modules.identityaccess.application.security.PasswordEncoderPort;
 import dz.sh.trc.nghyflo.modules.identityaccess.application.service.IdentityApplicationService;
 import dz.sh.trc.nghyflo.modules.identityaccess.domain.repository.UserRepository;
-import dz.sh.trc.nghyflo.modules.identityaccess.infrastructure.persistence.InMemoryUserRepository;
 import dz.sh.trc.nghyflo.modules.identityaccess.infrastructure.security.SpringSecurityPasswordEncoderAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class IdentityAccessConfiguration {
-
-    @Bean
-    public UserRepository userRepository() {
-        return new InMemoryUserRepository();
-    }
 
     @Bean
     public PasswordEncoderPort passwordEncoderPort() {
