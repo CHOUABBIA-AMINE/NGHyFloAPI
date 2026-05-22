@@ -1,21 +1,3 @@
-/**
- *
- * @Project     : NGHyFloAPI
- * @Product     : NGHyFlo — New Generation Hydrocarbon Flow Intelligence Platform
- * @Author      : NGHyFlo Engineering Team
- * @Owner       : Sonatrach / TRC Digitalization Initiative
- *
- * @Name        : Employee
- * @CreatedOn   : 2026-05-21
- * @UpdatedOn   : 2026-05-21
- *
- * @Type        : Class
- * @Layer       : Domain
- * @Package     : dz.sh.trc.nghyflo.modules.organization.domain.model
- *
- * @Description : Represents a Sonatrach operational employee assigned to an NGHyFlo structure.
- *
- */
 package dz.sh.trc.nghyflo.modules.organization.domain.model;
 
 import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
@@ -25,17 +7,41 @@ public class Employee {
     private final EmployeeId id;
     private final String fullName;
     private StructureId structureId;
+    private EmployeeStatus status;
 
     public Employee(EmployeeId id, String fullName) {
+        if (id == null) {
+            throw new IllegalArgumentException("Employee id is required");
+        }
         if (fullName == null || fullName.isBlank()) {
             throw new IllegalArgumentException("Employee name is required");
         }
         this.id = id;
-        this.fullName = fullName;
+        this.fullName = fullName.trim();
+        this.status = EmployeeStatus.ACTIVE;
     }
 
     public void assignStructure(StructureId structureId) {
+        if (structureId == null) {
+            throw new IllegalArgumentException("Structure id is required");
+        }
         this.structureId = structureId;
+    }
+
+    public void suspend() {
+        this.status = EmployeeStatus.SUSPENDED;
+    }
+
+    public void markOnLeave() {
+        this.status = EmployeeStatus.ON_LEAVE;
+    }
+
+    public void retire() {
+        this.status = EmployeeStatus.RETIRED;
+    }
+
+    public boolean activeInStructure() {
+        return status == EmployeeStatus.ACTIVE && structureId != null;
     }
 
     public EmployeeId id() {
@@ -48,5 +54,9 @@ public class Employee {
 
     public StructureId structureId() {
         return structureId;
+    }
+
+    public EmployeeStatus status() {
+        return status;
     }
 }
