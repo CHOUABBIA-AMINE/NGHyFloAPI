@@ -1,3 +1,21 @@
+/**
+ *
+ * @Project     : NGHyFloAPI
+ * @Product     : NGHyFlo - New Generation Hydrocarbon Flow Intelligence Platform
+ * @Author      : NGHyFlo Engineering Team
+ * @Owner       : Sonatrach / TRC Digitalization Initiative
+ *
+ * @Name        : OrganizationJpaMapper
+ * @CreatedOn   : 2026-05-22
+ * @UpdatedOn   : 2026-05-22
+ *
+ * @Type        : Mapper
+ * @Layer       : Infrastructure
+ * @Package     : dz.sh.trc.nghyflo.modules.organization.infrastructure.persistence.jpa
+ *
+ * @Description : Maps organization JPA projections to organization domain models.
+ *
+ */
 package dz.sh.trc.nghyflo.modules.organization.infrastructure.persistence.jpa;
 
 import dz.sh.trc.nghyflo.modules.organization.domain.model.AssignmentStatus;
@@ -23,13 +41,7 @@ public class OrganizationJpaMapper {
         if (entity.structureId() != null && !entity.structureId().isBlank()) {
             employee.assignStructure(StructureId.of(entity.structureId()));
         }
-        if (EmployeeStatus.SUSPENDED.name().equals(entity.status())) {
-            employee.suspend();
-        } else if (EmployeeStatus.ON_LEAVE.name().equals(entity.status())) {
-            employee.markOnLeave();
-        } else if (EmployeeStatus.RETIRED.name().equals(entity.status())) {
-            employee.retire();
-        }
+        applyEmployeeStatus(employee, entity.status());
         return employee;
     }
 
@@ -46,14 +58,28 @@ public class OrganizationJpaMapper {
                 ),
                 entity.createdAt()
         );
-        if (AssignmentStatus.ACTIVE.name().equals(entity.status())) {
+        applyAllocationStatus(allocation, entity.status());
+        return allocation;
+    }
+
+    private void applyEmployeeStatus(Employee employee, String status) {
+        if (EmployeeStatus.SUSPENDED.name().equals(status)) {
+            employee.suspend();
+        } else if (EmployeeStatus.ON_LEAVE.name().equals(status)) {
+            employee.markOnLeave();
+        } else if (EmployeeStatus.RETIRED.name().equals(status)) {
+            employee.retire();
+        }
+    }
+
+    private void applyAllocationStatus(CoverageAllocation allocation, String status) {
+        if (AssignmentStatus.ACTIVE.name().equals(status)) {
             allocation.activate();
-        } else if (AssignmentStatus.COMPLETED.name().equals(entity.status())) {
+        } else if (AssignmentStatus.COMPLETED.name().equals(status)) {
             allocation.complete();
-        } else if (AssignmentStatus.CANCELLED.name().equals(entity.status())) {
+        } else if (AssignmentStatus.CANCELLED.name().equals(status)) {
             allocation.cancel();
         }
-        return allocation;
     }
 
     private interface ValueFactory<T> {
