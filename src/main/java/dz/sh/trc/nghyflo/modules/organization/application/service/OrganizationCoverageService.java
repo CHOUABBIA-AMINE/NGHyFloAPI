@@ -19,7 +19,9 @@
 package dz.sh.trc.nghyflo.modules.organization.application.service;
 
 import dz.sh.trc.nghyflo.modules.organization.application.command.EvaluateCoverageCommand;
+import dz.sh.trc.nghyflo.modules.organization.application.command.EvaluateOperationalScopeCommand;
 import dz.sh.trc.nghyflo.modules.organization.application.dto.CoverageEvaluationResponse;
+import dz.sh.trc.nghyflo.modules.organization.application.mapper.OperationalScopeCoverageMapper;
 import dz.sh.trc.nghyflo.modules.organization.application.port.CoverageAllocationPort;
 import dz.sh.trc.nghyflo.modules.organization.application.port.EmployeeLookupPort;
 import dz.sh.trc.nghyflo.modules.organization.domain.model.AssignmentStatus;
@@ -30,16 +32,33 @@ import java.util.List;
 public class OrganizationCoverageService {
     private final EmployeeLookupPort employees;
     private final CoverageAllocationPort allocations;
+    private final OperationalScopeCoverageMapper scopeMapper;
 
     public OrganizationCoverageService(EmployeeLookupPort employees, CoverageAllocationPort allocations) {
+        this(employees, allocations, new OperationalScopeCoverageMapper());
+    }
+
+    public OrganizationCoverageService(
+            EmployeeLookupPort employees,
+            CoverageAllocationPort allocations,
+            OperationalScopeCoverageMapper scopeMapper
+    ) {
         if (employees == null) {
             throw new IllegalArgumentException("employees port is required");
         }
         if (allocations == null) {
             throw new IllegalArgumentException("allocations port is required");
         }
+        if (scopeMapper == null) {
+            throw new IllegalArgumentException("scopeMapper is required");
+        }
         this.employees = employees;
         this.allocations = allocations;
+        this.scopeMapper = scopeMapper;
+    }
+
+    public CoverageEvaluationResponse evaluate(EvaluateOperationalScopeCommand command) {
+        return evaluate(new EvaluateCoverageCommand(command.employeeId(), scopeMapper.toCoverage(command.requiredScope())));
     }
 
     public CoverageEvaluationResponse evaluate(EvaluateCoverageCommand command) {
