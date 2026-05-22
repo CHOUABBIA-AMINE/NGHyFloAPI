@@ -24,12 +24,12 @@ import dz.sh.trc.nghyflo.modules.organization.domain.model.Employee;
 import dz.sh.trc.nghyflo.modules.organization.domain.model.EmployeeStatus;
 import dz.sh.trc.nghyflo.modules.organization.domain.model.StaffingCoverage;
 import dz.sh.trc.nghyflo.modules.organization.domain.value.AssignmentId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import dz.sh.trc.nghyflo.modules.organization.domain.value.ShiftId;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.StructureId;
 import dz.sh.trc.nghyflo.shared.domain.value.PipelineId;
 import dz.sh.trc.nghyflo.shared.domain.value.RegionId;
 import dz.sh.trc.nghyflo.shared.domain.value.StationId;
-import dz.sh.trc.nghyflo.shared.domain.value.StructureId;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -52,7 +52,7 @@ public class OrganizationJpaMapper {
                 ShiftId.of(entity.shiftId()),
                 new StaffingCoverage(
                         typed(entity.regionIds(), RegionId::of),
-                        typed(entity.structureIds(), StructureId::of),
+                        typed(entity.structureIds(), dz.sh.trc.nghyflo.shared.domain.value.StructureId::of),
                         typed(entity.pipelineIds(), PipelineId::of),
                         typed(entity.stationIds(), StationId::of)
                 ),
