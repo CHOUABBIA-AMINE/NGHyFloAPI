@@ -1,3 +1,21 @@
+/**
+ *
+ * @Project     : NGHyFloAPI
+ * @Product     : NGHyFlo - New Generation Hydrocarbon Flow Intelligence Platform
+ * @Author      : NGHyFlo Engineering Team
+ * @Owner       : Sonatrach / TRC Digitalization Initiative
+ *
+ * @Name        : CredentialPolicy
+ * @CreatedOn   : 2026-05-22
+ * @UpdatedOn   : 2026-05-22
+ *
+ * @Type        : Class
+ * @Layer       : Domain
+ * @Package     : dz.sh.trc.nghyflo.modules.identityaccess.domain.model
+ *
+ * @Description : Credential acceptance policy for NGHyFlo identity access.
+ *
+ */
 package dz.sh.trc.nghyflo.modules.identityaccess.domain.model;
 
 public class CredentialPolicy {
