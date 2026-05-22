@@ -3,7 +3,7 @@ package dz.sh.trc.nghyflo.modules.organization.infrastructure.persistence.jpa;
 import dz.sh.trc.nghyflo.modules.organization.application.port.CoverageAllocationPort;
 import dz.sh.trc.nghyflo.modules.organization.domain.model.AssignmentStatus;
 import dz.sh.trc.nghyflo.modules.organization.domain.model.CoverageAllocation;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
