@@ -1,0 +1,58 @@
+# Package Inventory
+
+## Main Packages
+- `dz.sh.trc.nghyflo.bootstrap`
+- `dz.sh.trc.nghyflo.bootstrap.api`
+- `dz.sh.trc.nghyflo.bootstrap.config`
+- `dz.sh.trc.nghyflo.bootstrap.health`
+- `dz.sh.trc.nghyflo.modules.identityaccess.api.rest`
+- `dz.sh.trc.nghyflo.modules.identityaccess.api.rest.request`
+- `dz.sh.trc.nghyflo.modules.identityaccess.application.auth`
+- `dz.sh.trc.nghyflo.modules.identityaccess.application.command`
+- `dz.sh.trc.nghyflo.modules.identityaccess.application.dto`
+- `dz.sh.trc.nghyflo.modules.identityaccess.application.security`
+- `dz.sh.trc.nghyflo.modules.identityaccess.application.service`
+- `dz.sh.trc.nghyflo.modules.identityaccess.domain.model`
+- `dz.sh.trc.nghyflo.modules.identityaccess.domain.repository`
+- `dz.sh.trc.nghyflo.modules.identityaccess.domain.value`
+- `dz.sh.trc.nghyflo.modules.identityaccess.infrastructure.configuration`
+- `dz.sh.trc.nghyflo.modules.identityaccess.infrastructure.persistence`
+- `dz.sh.trc.nghyflo.modules.identityaccess.infrastructure.persistence.jpa`
+- `dz.sh.trc.nghyflo.modules.identityaccess.infrastructure.security`
+- `dz.sh.trc.nghyflo.modules.organization.api.rest`
+- `dz.sh.trc.nghyflo.modules.organization.api.rest.mapper`
+- `dz.sh.trc.nghyflo.modules.organization.api.rest.request`
+- `dz.sh.trc.nghyflo.modules.organization.application.command`
+- `dz.sh.trc.nghyflo.modules.organization.application.dto`
+- `dz.sh.trc.nghyflo.modules.organization.application.mapper`
+- `dz.sh.trc.nghyflo.modules.organization.application.port`
+- `dz.sh.trc.nghyflo.modules.organization.application.service`
+- `dz.sh.trc.nghyflo.modules.organization.domain.model`
+- `dz.sh.trc.nghyflo.modules.organization.domain.value`
+- `dz.sh.trc.nghyflo.modules.organization.infrastructure.configuration`
+- `dz.sh.trc.nghyflo.modules.organization.infrastructure.persistence.jpa`
+- `dz.sh.trc.nghyflo.platform.audit`
+- `dz.sh.trc.nghyflo.platform.configuration`
+- `dz.sh.trc.nghyflo.platform.events.outbox`
+- `dz.sh.trc.nghyflo.platform.exception`
+- `dz.sh.trc.nghyflo.platform.observability.correlation`
+- `dz.sh.trc.nghyflo.platform.observability.logging`
+- `dz.sh.trc.nghyflo.platform.observability.metrics`
+- `dz.sh.trc.nghyflo.platform.security.authentication`
+- `dz.sh.trc.nghyflo.platform.security.authorization`
+- `dz.sh.trc.nghyflo.platform.tenancy`
+- `dz.sh.trc.nghyflo.shared.api`
+- `dz.sh.trc.nghyflo.shared.application`
+- `dz.sh.trc.nghyflo.shared.domain.event`
+- `dz.sh.trc.nghyflo.shared.domain.exception`
+- `dz.sh.trc.nghyflo.shared.domain.model`
+- `dz.sh.trc.nghyflo.shared.domain.value`
+- `dz.sh.trc.nghyflo.shared.infrastructure`
+
+## Test Packages
+- `dz.sh.trc.nghyflo.architecture`
+- `dz.sh.trc.nghyflo.bootstrap`
+- `dz.sh.trc.nghyflo.modules.identityaccess` (+ api/application/domain/infrastructure subpackages)
+- `dz.sh.trc.nghyflo.modules.organization` (+ api/application/domain subpackages)
+- `dz.sh.trc.nghyflo.platform` (+ audit/events/exception/observability/security subpackages)
+- `dz.sh.trc.nghyflo.shared` (+ infrastructure subpackage)
