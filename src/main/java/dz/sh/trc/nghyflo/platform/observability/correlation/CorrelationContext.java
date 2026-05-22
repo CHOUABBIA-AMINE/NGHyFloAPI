@@ -21,7 +21,7 @@ package dz.sh.trc.nghyflo.platform.observability.correlation;
 import dz.sh.trc.nghyflo.shared.domain.value.CorrelationId;
 
 public final class CorrelationContext {
-    private static CorrelationId current;
+    private static final ThreadLocal<CorrelationId> CURRENT = new ThreadLocal<>();
 
     private CorrelationContext() {
     }
@@ -30,17 +30,19 @@ public final class CorrelationContext {
         if (correlationId == null) {
             throw new IllegalArgumentException("correlationId is required");
         }
-        current = correlationId;
+        CURRENT.set(correlationId);
     }
 
     public static CorrelationId getOrCreate() {
-        if (current == null) {
-            current = CorrelationId.newId();
+        CorrelationId correlationId = CURRENT.get();
+        if (correlationId == null) {
+            correlationId = CorrelationId.newId();
+            CURRENT.set(correlationId);
         }
-        return current;
+        return correlationId;
     }
 
     public static void clear() {
-        current = null;
+        CURRENT.remove();
     }
 }
