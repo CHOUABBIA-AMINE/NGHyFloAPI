@@ -26,21 +26,20 @@ import dz.sh.trc.nghyflo.modules.organization.domain.model.CoverageAllocation;
 import dz.sh.trc.nghyflo.modules.organization.domain.model.Employee;
 import dz.sh.trc.nghyflo.modules.organization.domain.model.StaffingCoverage;
 import dz.sh.trc.nghyflo.modules.organization.domain.value.AssignmentId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import dz.sh.trc.nghyflo.modules.organization.domain.value.ShiftId;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.StructureId;
 import dz.sh.trc.nghyflo.shared.domain.value.PipelineId;
 import dz.sh.trc.nghyflo.shared.domain.value.RegionId;
-import dz.sh.trc.nghyflo.shared.domain.value.StructureId;
 import java.time.Instant;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OrganizationCoverageServiceTest {
 
