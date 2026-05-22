@@ -1,80 +1,62 @@
-# Module Dependency Rules
+# Module Dependency Rules (Target)
 
-## Purpose
-Define enforceable dependency constraints for the NGHyFlo modular monolith.
-
-NGHyFloAPI is intentionally implemented as a modular monolith first. Module independence must be enforced by package boundaries, architecture tests, application contracts, and outbox events before any future microservice extraction.
-
-## Root Package
-
-`dz.sh.trc.nghyflo`
-
-## Layering Model
-
-Each business module must follow:
-
-```text
-domain/
-application/
-infrastructure/
-api/
-```
-
-## Allowed Dependency Direction
-
-```text
-api -> application -> domain
-infrastructure -> application/domain
-platform -> shared
-modules -> shared/platform abstractions
-```
+## Allowed Dependencies
+- `shared-kernel` -> no module dependencies.
+- `security` -> `identityaccess`, `organization`, `shared-kernel`.
+- `audit` -> `shared-kernel` only (consumes events from all contexts).
+- Domain contexts (`topology`, `telemetry`, `planning`, `monitoring`, `incidents`, `workflow`, `analytics`, `integration`, `identityaccess`, `organization`) -> `shared-kernel`, optionally `security` contracts.
 
 ## Forbidden Dependencies
+- Any context -> another context's infrastructure package.
+- API layer -> infrastructure persistence implementations.
+- Domain layer -> Spring/JPA/web frameworks.
+- Context-to-context direct entity reference.
+- Bidirectional dependencies between bounded contexts.
 
-- `domain` must not depend on `infrastructure`.
-- `domain` must not depend on `api`.
-- `domain` must not depend on Spring Framework.
-- `domain` must not depend on JPA.
-- `domain` must not depend on Spring Data repositories.
-- `application` must not depend on `api`.
-- `application` must not depend on `infrastructure`.
-- `application` must not depend on Spring Data repositories.
-- `api` must not depend on JPA infrastructure packages.
-- Modules must not directly access another module's JPA repositories.
-- Advisory modules must not depend on approval, publication, or incident-closure commands.
+## Dependency Graph
+```mermaid
+graph LR
+  SK[shared-kernel]
+  IA[identityaccess]
+  ORG[organization]
+  SEC[security]
+  TOP[topology]
+  TEL[telemetry]
+  PLAN[planning]
+  MON[monitoring]
+  INC[incidents]
+  WF[workflow]
+  ANA[analytics]
+  INT[integration]
+  AUD[audit]
 
-## Cross-Module Interaction Rules
+  IA --> SK
+  ORG --> SK
+  TOP --> SK
+  TEL --> SK
+  PLAN --> SK
+  MON --> SK
+  INC --> SK
+  WF --> SK
+  ANA --> SK
+  INT --> SK
+  AUD --> SK
+  SEC --> SK
 
-Cross-module interaction must use one of:
+  SEC --> IA
+  SEC --> ORG
 
-1. application service contracts;
-2. domain events;
-3. outbox events;
-4. read-model projections;
-5. explicitly approved platform abstractions.
+  MON --> TEL
+  INC --> MON
+  WF --> INC
+  WF --> PLAN
+  ANA --> TEL
+  ANA --> MON
 
-Direct repository access across bounded contexts is forbidden.
+  classDef forbidden fill:#fee,stroke:#f66,stroke-width:1px;
+```
 
-## Active ArchUnit Guardrails
-
-The following tests now enforce the baseline rules:
-
-- `DddLayeringRulesTest`
-- `ModuleDependencyRulesTest`
-- `NoCrossModuleJpaAccessTest`
-- `AdvisoryModuleIsolationTest`
-
-## Industrial Safety Rules
-
-- No actor identity may be trusted from request bodies.
-- No state-changing action should exist without audit path.
-- No cross-module operational reaction should bypass outbox/event path.
-- Raw telemetry must never be treated as approved operational truth.
-- AI, digital twin, and hydraulic simulation modules must remain advisory-only.
-- Workflow approval must enforce authenticated actor, authorization, valid transition, and segregation of duty.
-
-## Current Limitations
-
-- Some modules remain skeleton-only.
-- Some source files still require header and formatting normalization.
-- Additional architecture rules will be added as workflow, measurement, telemetry, and advisory modules become executable.
+## Enforcement model
+- ArchUnit rules per layer and per context.
+- Build fails on forbidden package dependency.
+- Dependency whitelist maintained per module in architecture tests.
