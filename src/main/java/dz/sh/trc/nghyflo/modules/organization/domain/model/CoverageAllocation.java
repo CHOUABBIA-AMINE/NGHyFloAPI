@@ -19,8 +19,8 @@
 package dz.sh.trc.nghyflo.modules.organization.domain.model;
 
 import dz.sh.trc.nghyflo.modules.organization.domain.value.AssignmentId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import dz.sh.trc.nghyflo.modules.organization.domain.value.ShiftId;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
 import java.time.Instant;
 
 public class CoverageAllocation {
