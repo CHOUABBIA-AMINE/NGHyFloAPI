@@ -1,5 +1,8 @@
 # Current Architecture Analysis (Discovery)
 
+> Canonical navigation: [Architecture Documentation Index](index.md)
+
+
 ## Architectural Pattern Signals
 - Strong **modular monolith** layout: `modules/<bounded-context>` with internal `api/application/domain/infrastructure` layering.
 - **DDD tactical patterns** present: aggregates/entities/value objects/domain events/domain exceptions.
