@@ -47,7 +47,7 @@
 
 | Item | Source roadmap file | Goal | Likely affected files/packages | Coding-standard acceptance criteria | Validation command(s) | Risk | Status |
 |---|---|---|---|---|---|---|---|
-| R01-C01 | `docs/roadmap/phase-01-cleanup.md` | Baseline cleanup and inventory lock | `docs/roadmap/inventory/*`, `docs/architecture/current-repository-tree.md` | Doc updates must preserve ADR/API meaning; no source-code modifications | `mvn -q -DskipTests compile` + `rg` duplicate parity check | Low | Planned |
+| R01-C01 | `docs/roadmap/phase-01-cleanup.md` | Baseline cleanup and inventory lock | `docs/roadmap/inventory/*`, `docs/architecture/current-repository-tree.md` | Doc updates must preserve ADR/API meaning; no source-code modifications | `mvn -q -DskipTests compile` + `rg` duplicate parity check | Low | Completed (2026-05-23) |
 | R01-C02 | `docs/roadmap/phase-01-cleanup.md` | Remove redundant documentation overlap | `docs/architecture/*.md`, new `docs/architecture/index.md` | Keep baseline docs untouched in meaning; cross-link consistency | markdown link check; `rg "TODO\|TBD" docs/architecture` | Low | Planned |
 | R01-C03 | `docs/roadmap/phase-01-cleanup.md` | Establish cleanup guardrails | `docs/roadmap/templates/*`, `README.md` | Governance template aligns with roadmap sequencing | docs lint + link validation | Low | Planned |
 | R02-C01 | `docs/roadmap/phase-02-boundary-normalization.md` | Canonicalize context-owned identifiers | `modules/organization`, `shared`, `platform`, tests | Constructor injection; no controller→repository; no domain→infrastructure; naming/package consistency | compile + unit tests + architecture tests | Medium | Planned |
@@ -61,14 +61,13 @@
 - Created initial execution control document for ordered roadmap execution.
 
 ## 7) Next step
-- Execute roadmap item `R01-C01` (baseline inventory lock) in a single dedicated commit.
+- Execute roadmap item `R01-C02` (documentation overlap normalization) in a single dedicated commit after reviewing cross-link impact.
 
 ## 8) Files/packages likely affected by each roadmap item
 - Detailed likely file ownership is captured in each phase file (`docs/roadmap/phase-*.md`) and will be copied to per-item checklist before implementation.
-- Immediate next item (`R01-C01`) likely affects only:
-  - `docs/roadmap/inventory/baseline-file-manifest.md`
-  - `docs/roadmap/inventory/duplicate-candidate-manifest.md`
-  - `docs/architecture/current-repository-tree.md`
+- Immediate next item (`R01-C02`) likely affects only:
+  - `docs/architecture/index.md`
+  - cross-links in `docs/architecture/*.md`
 
 ## 9) Coding-standard acceptance criteria per roadmap item
 For every implementation commit (`Rxx-Cyy`), enforce for touched files only:
@@ -104,9 +103,11 @@ For every implementation commit (`Rxx-Cyy`), enforce for touched files only:
 - If conflict appears, pause implementation and request ADR/API-aligned resolution.
 
 ## 13) Out-of-scope issues to revisit later
+- Pre-existing compile failure in `OrganizationApplicationService` due shared vs organization identifier type mismatch (outside R01-C01 scope; roadmap-candidate for boundary normalization in Phase 02).
 - Any coding-standard violation found outside currently selected roadmap item scope.
 - Any broad test taxonomy cleanup before Phase 09.
 - Any final doc closure work before Phase 10.
 
 ## Execution tracking log
 - 2026-05-23: Planning-only pass completed. No application source code changes performed.
+- 2026-05-23: Executed `R01-C01` (baseline inventory lock). Created inventory manifests, updated repository-tree doc, ran required validation commands; duplicate parity check succeeded while compile failed due pre-existing type mismatch in organization application service.
