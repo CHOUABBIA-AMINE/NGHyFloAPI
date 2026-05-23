@@ -67,3 +67,8 @@ src/main/resources
 - `modules/organization/**` module-specific tests
 - `platform/**` audit/security/exception/correlation/outbox tests
 - `shared/**` shared kernel/domain contract tests
+
+
+## R01-C01 Baseline Inventory Artifacts
+- `docs/roadmap/inventory/baseline-file-manifest.md`
+- `docs/roadmap/inventory/duplicate-candidate-manifest.md`
