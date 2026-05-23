@@ -268,6 +268,27 @@ Do not delete or rewrite baseline documentation:
 
 If baseline documentation must change, document the reason and require explicit user approval.
 
+## Codex Cloud Completion Rule
+
+When using Codex Cloud, do not assume the user will commit manually.
+
+After each implementation task, Codex must perform a closure verification and prepare the task for the cloud PR workflow.
+
+The closure response must include:
+- Current step
+- Next step
+- Roadmap item
+- Files changed
+- Documentation updated
+- Checklist updated
+- Validation commands and results
+- PR readiness
+- Recommended PR title
+- Recommended PR description
+- Remaining risks
+
+Do not start the next roadmap item until the current item is verified and marked ready for PR review.
+
 ## Current Step / Next Step Reporting
 
 Every Codex response must include:
