@@ -18,6 +18,7 @@
  */
 package dz.sh.trc.nghyflo.shared.domain.value;
 
+@Deprecated(since = "R02-C01")
 public record EmployeeId(String value) {
 
     public EmployeeId {

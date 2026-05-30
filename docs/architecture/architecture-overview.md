@@ -1,5 +1,8 @@
 # NGHyFloAPI Architecture Overview
 
+> Canonical navigation: [Architecture Documentation Index](index.md)
+
+
 ## Current Delivery Status
 - Phase 0.1 completed: dependency governance baseline.
 - Phase 0.2 completed: project quality gates.

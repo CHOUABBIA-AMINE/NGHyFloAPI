@@ -26,7 +26,7 @@ import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import dz.sh.trc.nghyflo.shared.domain.value.PipelineId;
 import dz.sh.trc.nghyflo.shared.domain.value.RegionId;
 import dz.sh.trc.nghyflo.shared.domain.value.StationId;
-import dz.sh.trc.nghyflo.shared.domain.value.StructureId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.StructureId;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
