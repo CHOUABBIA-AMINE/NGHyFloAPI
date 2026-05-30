@@ -268,6 +268,18 @@ Do not delete or rewrite baseline documentation:
 
 If baseline documentation must change, document the reason and require explicit user approval.
 
+## Codex Cloud Completion Rule
+
+Before considering any roadmap item complete and PR-ready in Codex Cloud:
+
+1. Ensure exactly one roadmap item was addressed in the change set.
+2. Ensure no unrelated cleanup or feature work was included.
+3. Ensure required docs/checklist updates are present for that item.
+4. Run required validation commands for that item, or explicitly document why they are not runnable.
+5. Record current step, next step, validation results, and remaining risks.
+
+Do not mark work complete in Codex Cloud if these checks are not satisfied.
+
 ## Current Step / Next Step Reporting
 
 Every Codex response must include:
@@ -305,3 +317,55 @@ Validation:
 
 Remaining risks:
 - <risks or none>
+```
+
+## Implementation Rules
+
+When implementation is explicitly requested:
+
+1. Implement only the selected roadmap item.
+2. Keep one logical commit per roadmap item.
+3. Preserve existing behavior unless the roadmap item explicitly requires correction.
+4. Apply coding standards only to touched files within the selected item scope.
+5. Do not perform broad or opportunistic refactoring outside item scope.
+6. If out-of-scope violations are found, document them for follow-up instead of expanding scope.
+
+## Validation Commands
+
+For every roadmap item:
+
+1. Use the validation command(s) defined in the corresponding `docs/roadmap/phase-*.md` item.
+2. Run the minimum required commands for the selected item only.
+3. Record command outcomes (pass/fail/warning) in execution tracking.
+4. If a command cannot run due to environment constraints, explicitly document the reason.
+
+## Required Output After Each Task
+
+After each task, provide:
+
+- Current step
+- Next step
+- Roadmap item (or explicitly state none)
+- Roadmap source file
+- Files changed
+- Documentation updated
+- Checklist updated
+- Validation commands run
+- Validation result
+- Remaining risks
+
+If work is PR-ready, also provide:
+
+- PR readiness status
+- recommended PR title
+- recommended PR description summary
+
+## Stop Conditions
+
+Stop and request user direction before continuing if any of the following occurs:
+
+1. A conflict exists between generated roadmap guidance and baseline `docs/adr/` or `docs/api/` meaning.
+2. The requested change would require multiple roadmap items in one commit.
+3. The requested change expands into unrelated cleanup or feature development.
+4. Required validation cannot be interpreted from roadmap sources.
+5. A blocker prevents safe completion of the selected roadmap item.

@@ -62,8 +62,7 @@ class OrganizationDomainModelTest {
     @Test
     void shouldCompareCoverageInclusion() {
         RegionId regionId = RegionId.newId();
-        dz.sh.trc.nghyflo.shared.domain.value.StructureId structureId =
-                dz.sh.trc.nghyflo.shared.domain.value.StructureId.newId();
+        StructureId structureId = StructureId.newId();
         PipelineId pipelineId = PipelineId.newId();
         StaffingCoverage granted = new StaffingCoverage(Set.of(regionId), Set.of(structureId), Set.of(pipelineId), Set.of());
         StaffingCoverage required = new StaffingCoverage(Set.of(regionId), Set.of(), Set.of(pipelineId), Set.of());

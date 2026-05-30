@@ -1,5 +1,8 @@
 # NGHyFlo Target Architecture Overview (Phase 3)
 
+> Canonical navigation: [Architecture Documentation Index](index.md)
+
+
 ## Architectural North Star
 NGHyFlo target state is a **DDD + Hexagonal + Modular Monolith** designed for Sonatrach-scale operations, with explicit seams for progressive microservice extraction.
 
