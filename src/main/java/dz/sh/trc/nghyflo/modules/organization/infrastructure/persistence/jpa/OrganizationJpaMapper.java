@@ -52,7 +52,7 @@ public class OrganizationJpaMapper {
                 ShiftId.of(entity.shiftId()),
                 new StaffingCoverage(
                         typed(entity.regionIds(), RegionId::of),
-                        typed(entity.structureIds(), dz.sh.trc.nghyflo.shared.domain.value.StructureId::of),
+                        typed(entity.structureIds(), StructureId::of),
                         typed(entity.pipelineIds(), PipelineId::of),
                         typed(entity.stationIds(), StationId::of)
                 ),

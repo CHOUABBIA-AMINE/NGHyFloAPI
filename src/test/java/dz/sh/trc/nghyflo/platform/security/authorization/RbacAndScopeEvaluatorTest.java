@@ -19,7 +19,7 @@
 package dz.sh.trc.nghyflo.platform.security.authorization;
 
 import dz.sh.trc.nghyflo.platform.security.authentication.AuthenticatedActor;
-import dz.sh.trc.nghyflo.shared.domain.value.EmployeeId;
+import dz.sh.trc.nghyflo.modules.organization.domain.value.EmployeeId;
 import dz.sh.trc.nghyflo.shared.domain.value.TenantId;
 import dz.sh.trc.nghyflo.shared.domain.value.UserId;
 import java.util.Set;
