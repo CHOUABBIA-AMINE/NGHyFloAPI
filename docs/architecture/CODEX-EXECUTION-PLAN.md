@@ -53,6 +53,9 @@ Status scale: **Pending / Blocked / Ready / Done**.
 | R01-C02 | `docs/roadmap/phase-01-cleanup.md` | Remove redundant documentation overlap | Done | `docs/architecture/index.md`, `docs/architecture/*.md` cross-links, possible superseded architecture summary docs | Keep baseline docs untouched in meaning; cross-link consistency; no source-code edits | Y | Y | markdown link check; `rg "TODO\|TBD" docs/architecture` | Low |
 | R01-C03 | `docs/roadmap/phase-01-cleanup.md` | Establish cleanup guardrails | Done | `docs/roadmap/templates/*`, `README.md` | Governance template aligns with roadmap sequencing; no architecture redesign | Y | Y | docs lint + link validation | Low |
 | R02-C01 | `docs/roadmap/phase-02-boundary-normalization.md` | Canonicalize context-owned identifiers | Blocked | `modules/organization`, `shared`, `platform`, tests | Constructor injection only; no controller→repository; no domain→infrastructure; naming/package consistency | Y | Y | compile + unit tests + architecture tests | Medium |
+| R02-C01 | `docs/roadmap/phase-02-boundary-normalization.md` | Canonicalize context-owned identifiers | Ready | `modules/organization`, `shared`, `platform`, tests | Constructor injection only; no controller→repository; no domain→infrastructure; naming/package consistency | Y | Y | compile + unit tests + architecture tests | Medium |
+| R01-C03 | `docs/roadmap/phase-01-cleanup.md` | Establish cleanup guardrails | Pending | `docs/roadmap/templates/*`, `README.md` | Governance template aligns with roadmap sequencing; no architecture redesign | Y | N | docs lint + link validation | Low |
+| R02-C01 | `docs/roadmap/phase-02-boundary-normalization.md` | Canonicalize context-owned identifiers | Pending | `modules/organization`, `shared`, `platform`, tests | Constructor injection only; no controller→repository; no domain→infrastructure; naming/package consistency | Y | Y | compile + unit tests + architecture tests | Medium |
 | R02-C02 | `docs/roadmap/phase-02-boundary-normalization.md` | Normalize correlation filter ownership | Pending | `platform/observability`, `shared/api`, config wiring/tests | Single filter ownership; avoid duplicate registration; layering compliance | Y | Y | integration tests for filter order/correlation headers | Medium-High |
 | R02-C03 | `docs/roadmap/phase-02-boundary-normalization.md` | Isolate non-production persistence adapters | Pending | `modules/identityaccess` persistence wiring, test/profile config | No production leakage of test adapter; package ownership clarity | Y | Y | compile + profile boot tests | Medium |
 | R02-C04 | `docs/roadmap/phase-02-boundary-normalization.md` | Remove duplicated root-package tests | Pending | root/platform duplicated tests; canonical tests | Keep only canonical tests; avoid assertion loss | Y | Y | full test run | Low |
@@ -96,6 +99,22 @@ Status scale: **Pending / Blocked / Ready / Done**.
 ## 9) Out-of-scope issues to revisit later
 - Pre-existing compile failure in `OrganizationApplicationService` due shared vs organization identifier type mismatch was addressed by `R02-C01`.
 - Out-of-scope test compilation failures remain in identity access and platform exception tests (`IdentityAccessApplicationServiceTest`, `UserControllerTest`, `GlobalExceptionHandlerTest`); these are not caused by `R02-C01` identifier ownership changes and must be handled by a later in-scope task or explicit user direction.
+- Implemented `R01-C03` by adding reusable cleanup guardrails and a README reference for roadmap commit readiness.
+
+## 7) Next step
+- Execute `R02-C01` (canonicalize context-owned identifiers) in one dedicated commit after review approval.
+- Implemented `R01-C02` by creating the canonical architecture index and adding canonical index cross-links to architecture summary entry documents.
+
+## 7) Next step
+- Execute `R01-C03` (cleanup guardrails) in one dedicated commit after review approval.
+
+## 8) Blockers and manual decisions
+- No hard blocker for planning.
+- If generated roadmap guidance conflicts with baseline ADR/API meaning, pause implementation and request explicit decision before behavior changes.
+- Potential sequencing caution: compile currently fails for a pre-existing shared-vs-module identifier mismatch; this is tracked for later in-scope boundary normalization.
+
+## 9) Out-of-scope issues to revisit later
+- Pre-existing compile failure in `OrganizationApplicationService` due shared vs organization identifier type mismatch (outside planning scope; candidate for Phase 02 boundary normalization item handling).
 - Any coding-standard violations discovered outside the currently selected roadmap item scope.
 - Broad testing taxonomy cleanup before Phase 09.
 - Final documentation closure actions before Phase 10.
